@@ -9,6 +9,9 @@ export const isAuthenticated = async (req,res,next)=>{
 
   req.user = decode
   
+  if (!req.user) {
+    throw new UnauthenticatedError("Logged in First")
+  }
   
   
   next()
