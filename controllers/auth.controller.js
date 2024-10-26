@@ -14,8 +14,15 @@ export const register = async (req, res, next) => {
 
     console.log("Request body:", req.body); // Debugging
 
-    if (!email || !password || !fullname) {
-      return res.status(400).json({ message: "Invalid Credentials!!" });
+     // Validate input fields
+     if (!email) {
+      return res.status(400).json({ message: "Email is required!" });
+    }
+    if (!password) {
+      return res.status(400).json({ message: "Password is required!" });
+    }
+    if (!fullname) {
+      return res.status(400).json({ message: "Full name is required!" });
     }
 
     const existingUser = await User.findOne({ email });
@@ -58,7 +65,7 @@ export const login = async (req, res, next) => {
   try {
     const { email, password,role } = req.body;
 
-    if (!email || !password || !fullName || !role) {
+    if (!email || !password) {
       throw new BadRequestError("All fields are required!!");
     }
 
