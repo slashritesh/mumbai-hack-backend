@@ -15,14 +15,9 @@ export const register = async (req, res, next) => {
     console.log("Request body:", req.body); // Debugging
 
      // Validate input fields
-     if (!email) {
-      return res.status(400).json({ message: "Email is required!" });
-    }
-    if (!password) {
-      return res.status(400).json({ message: "Password is required!" });
-    }
-    if (!fullname) {
-      return res.status(400).json({ message: "Full name is required!" });
+     
+    if(!email || !password || fullname){
+      return res.status(401).json({ message: "Invalid credentials!!",data : req.body });
     }
 
     const existingUser = await User.findOne({ email });
