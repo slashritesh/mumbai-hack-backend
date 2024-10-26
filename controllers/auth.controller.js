@@ -60,7 +60,7 @@ export const login = async (req, res, next) => {
   try {
     const { email, password,role } = req.body;
 
-    if (!email || !password) {
+    if (!email && !password) {
       throw new BadRequestError("All fields are required!!");
     }
 
