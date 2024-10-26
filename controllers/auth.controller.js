@@ -12,11 +12,11 @@ export const register = async (req, res, next) => {
   try {
     const { email, password, fullname } = req.body;
 
-    console.log("Request body:", req.body); // Debugging
+    console.log("Request body:", req.body); // it is working
 
      // Validate input fields
      
-    if(!email || !password || fullname){
+    if(!email &&  !password && !fullname){
       return res.status(401).json({ message: "Invalid credentials!!",data : req.body });
     }
 
