@@ -6,6 +6,7 @@ import jwt from "jsonwebtoken"
 import { Manager } from "../models/Manager.js";
 import { generateCode5digit } from "../lib/generateCode.js";
 import { Employee } from "../models/Employee.js";
+import { application } from "express";
 
 
 export const register = async (req, res, next) => {
@@ -157,7 +158,12 @@ export const joinAsEmployee = async (req, res,next) => {
 };
 
 
-export const currentUser = ()=>{
-
+export const currentUser = async (req,res,next)=>{
+  try{
+    const user = await User.findById(req.user.id)
+    res.status(200).json({user})
+  }catch(error){
+    next(error)
+  }
 }
 
