@@ -8,6 +8,7 @@ import { authRouter } from "./routes/auth.router.js";
 import morgan from "morgan";
 import { taskrouter } from "./routes/task.route.js";
 import { managerRouter } from "./routes/manager.route.js";
+import cors from "cors"
 import { employeeRouter } from "./routes/employee.route.js";
 
 dotenv.config();
@@ -21,7 +22,7 @@ app.use(cookieParser());
 app.use(morgan("dev"));
 
 app.use(cors({
-  origin: print.env.DOMAIN,//(https://your-client-app.com)
+  origin: process.env.DOMAIN,//(https://your-client-app.com)
   optionsSuccessStatus: 200,
 }))
 
