@@ -165,5 +165,5 @@ export const currentUser = async (req,res,next)=>{
   }catch(error){
     next(error)
   }
-}a
+}
 
