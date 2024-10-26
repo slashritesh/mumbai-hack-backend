@@ -20,6 +20,11 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(morgan("dev"));
 
+app.use(cors({
+  origin: print.env.DOMAIN,//(https://your-client-app.com)
+  optionsSuccessStatus: 200,
+}))
+
 app.use("/api/auth", authRouter);
 app.use("/api/tasks", taskrouter); 
 app.use("/api/employee", employeeRouter); 
