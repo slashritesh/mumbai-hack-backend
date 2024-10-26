@@ -23,7 +23,7 @@ app.use(morgan("dev"));
 
 app.use(cors({
   origin: process.env.DOMAIN,//(https://your-client-app.com)
-  optionsSuccessStatus: 200,
+  credentials: true
 }))
 
 app.use("/api/auth", authRouter);

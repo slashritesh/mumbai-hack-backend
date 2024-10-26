@@ -5,7 +5,7 @@ import {isAuthenticated} from "../middleware/authMiddleware.js"
 const authRouter = express.Router()
 
 authRouter.post("/register",register)
-authRouter.get("/user",isAuthenticated,currentUser)
+authRouter.route("/user").get(isAuthenticated,currentUser)
 authRouter.post("/join-as-employee",joinAsEmployee)
 authRouter.route("/login").post(login)
 
