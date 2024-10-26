@@ -7,6 +7,7 @@ import { Manager } from "../models/Manager.js";
 import { generateCode5digit } from "../lib/generateCode.js";
 import { Employee } from "../models/Employee.js";
 
+
 export const register = async (req, res, next) => {
   try {
     const { email, password, fullname } = req.body;
@@ -57,8 +58,8 @@ export const login = async (req, res, next) => {
   try {
     const { email, password,role } = req.body;
 
-    if (!email || !password) {
-      throw new BadRequestError("Invalid Credentials!!");
+    if (!email || !password || !fullName || !role) {
+      throw new BadRequestError("All fields are required!!");
     }
 
     const existingUser = await User.findOne({ email });
@@ -88,7 +89,7 @@ export const login = async (req, res, next) => {
     const accessToken = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: "24h" });
 
     res.cookie("token", accessToken, { httpOnly: true, secure: true });
-    res.status(200).json({ message: "Login successful!!" ,role : existingUser.role });
+    res.status(200).json({ message: "Login successful!!" ,role : existingUser.role,accessToken });
 
   } catch (error) {
     next(error);
