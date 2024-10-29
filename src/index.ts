@@ -1,6 +1,8 @@
-import express, { NextFunction, Request, Response, urlencoded } from "express";
+import express, { urlencoded } from "express";
 import cors from 'cors'
 import authRouter from "./routes/auth.routes";
+import errormiddleware from "./middleware/errormiddleware";
+import { StatusCodes } from "http-status-codes";
 
 const app = express();
 app.use(express.json())
@@ -8,14 +10,16 @@ app.use(urlencoded({extended: false}))
 app.use(cors())
 
 app.use("/api/auth",authRouter)
-app.use("/api/tasks")
-app.use("/api/manager")
+// app.use("/api/tasks")
+// app.use("/api/manager")
 
 
-app.use("*",(req : Request,res : Response,next : NextFunction)=>{
-    res.status(404).json({message : "route not found"})
-    next()
+app.use("*",(req,res,next)=>{
+    res.status(StatusCodes.NOT_FOUND).json({message : "route not found"})
+    return next()
 })
+
+app.use(errormiddleware)
 
 const port = 4000;
 
