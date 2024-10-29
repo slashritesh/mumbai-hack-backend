@@ -1,6 +1,9 @@
 import { NextFunction, Request, Response } from "express";
 import {StatusCodes} from "http-status-codes"
-import { CustomError } from "../types/globals";
+
+export interface CustomError extends Error{
+    statuscode :  number
+}
 
 
 const errormiddleware = (err : CustomError, req : Request,res : Response,next : NextFunction)=>{
