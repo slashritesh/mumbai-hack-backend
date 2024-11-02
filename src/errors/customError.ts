@@ -7,7 +7,7 @@ export class NotFoundError extends Error {
     constructor(message: string) {
         super(message);
         this.name = "NotFoundError"
-        this.statuscode = StatusCodes.FORBIDDEN
+        this.statuscode = StatusCodes.NOT_FOUND
     }
 }
 
@@ -25,7 +25,7 @@ export class Unauthenticated extends Error {
     constructor(message: string) {
         super(message);
         this.name = "Unauthenticated"
-        this.statuscode = StatusCodes.FORBIDDEN
+        this.statuscode = StatusCodes.UNAUTHORIZED
     }
 }
 
@@ -34,6 +34,6 @@ export class BadRequestError extends Error {
     constructor(message: string) {
         super(message);
         this.name = "BadRequestError"
-        this.statuscode = StatusCodes.FORBIDDEN
+        this.statuscode = StatusCodes.BAD_REQUEST
     }
 }
