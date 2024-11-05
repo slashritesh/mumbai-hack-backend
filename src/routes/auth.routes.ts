@@ -1,11 +1,12 @@
 import express from 'express'
-import { currentuser, login, register } from '../controller/auth.controller'
+import { getuser, login, register } from '../controller/auth.controller'
+import { isAuthenticate } from '../middleware/authmiddleware'
 const authRouter = express.Router()
 
 authRouter.route("/register").post(register)
 authRouter.route("/login").post(login)
 
-authRouter.route("/user").post(currentuser)
+authRouter.route("/user").get(isAuthenticate,getuser)
 
 
 export default authRouter

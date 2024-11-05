@@ -6,7 +6,7 @@ declare namespace NodeJS{
     PORT : string,
     NODE_ENV : string,
     ACCESSTOKEN_SECERT : string,
-    REFRESHTOKEN_SECERT : string,
+    REFRESH_TOKEN_SECRET : string | undefined,
     ACCESSTOKEN_EXPIRESIN : string,
     REFRESHTOKEN_EXPIRESIN : string
   }

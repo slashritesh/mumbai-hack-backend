@@ -14,16 +14,25 @@ datasource db {
 }
 
 model Organization {
-  id   String @id @default(auto()) @map("_id") @db.ObjectId
+  id    String  @id @default(auto()) @map("_id") @db.ObjectId
   org_name String
-  org_email String
-  industry String
-  password String
+  org_email String @unique
+  industry String?
+  userid String @unique @db.ObjectId
+  user User @relation(fields: [userid],references: [id])
+}
+
+enum Role {
+  ADMIN
+  MANAGER
+  EMPLOYEE
 }
 
 model User {
   id    String  @id @default(auto()) @map("_id") @db.ObjectId
   email String  @unique
   password String
+  role Role[] @default([ADMIN])
   fullname  String?
+  org Organization?
 }
